@@ -26,6 +26,9 @@
                 font-size: 0.9em;
                 user-select: none;
             }
+            #myTable {
+                table-layout: fixed;
+            }
         </style>
     </head>
 
@@ -40,13 +43,15 @@
                 <!-- Grid 영역 -->
                 <div class="row">
                         <div class="col-md-8">
-                            <h4>DataTables</h4>
-                            <button id="addRowBtn" class="btn btn-success mb-2">행 추가</button>
+                            <h4></h4>
+                            <button id="addRowBtn" class="btn btn-info mb-2">행 추가</button>
                             <table id="myTable" class="display">
                                 <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>내용</th>
+                                    <th>순번</th>
+                                    <th>항목명</th>
+                                    <th>보이는 값</th>
+                                    <th>DB 저장용 값</th>
                                     <th>액션</th>
                                 </tr>
                                 </thead>
@@ -54,12 +59,11 @@
                             </table>
                         </div>
                         <div class="col-md-4 editor-panel">
-                            <h4>편집 패널</h4>
+                            <h4></h4>
                             <div id="editorInfo">행을 선택하세요.</div>
-                            
-                           
-                            <div id="custom-input" class="input-box" contenteditable="true"></div>
-
+                            <div><input type="text" id="item-name" class="form-control mt-2" style="min-height: 40px;" placeholder="이름"></div>
+                            <div id="custom-input" class="form-control mt-2" contenteditable="true" style="min-height: 40px;" placeholder="표기양식"></div>
+                                
                             <div style="margin-top:10px;">
                                 <button class="add-btn" data-code="id" data-label="ID">+ID</button>
                                 <button class="add-btn" data-code="store_id" data-label="대리점ID">+대리점ID</button>
@@ -69,18 +73,10 @@
                             </div>
 
                             <div style="margin-top:10px;">
-                                <button id="saveBtn">적용(저장)</button>
+                                <button id="saveBtn">적용</button>
                             </div>
-
-                            <h3>보이는 값:</h3>
-                            <div id="displayResult"></div>
-
-                            <h3>DB 저장용 값:</h3>
-                            <div id="dbResult"></div>
                         </div>
                 </div>
-
-                <button id="saveBtn" class="btn btn-primary mt-3">저장</button>
             </div>
             <!-- /.container-fluid -->
         </th:block>
