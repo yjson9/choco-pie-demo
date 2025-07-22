@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/tomcat-8.5.73/webapps/tmp/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/tomcat-8.5.73/webapps/tmp/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--
+     로그 레벨 : TRACE > DEBUG > INFO > WARN > ERROR
+    -->
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.zaxxer" level="info"/>
+    <logger name="org.mybatis" level="info"/>
+    <logger name="org.apache" level="info"/>
+    <logger name="org.elasticsearch" level="info"/>
+    <logger name="org.flywaydb" level="info"/>
+    <!--<logger name="kr.or.connect" level="info"/>-->
+    <logger name="org.jboss" level="info"/>
+    <logger name="org.hibernate" level="info"/>
+    <logger name="io.netty" level="info"/>
+    <logger name="reactor.netty" level="info"/>
+
+    <!-- dev env -->
+    <!--
+    <springProfile name="dev">
+        <logger name="org.springframework.boot" level="WARN" />
+        <logger name="org.springframework.web" level="DEBUG" />
+    </springProfile>
+    -->
+
+    <!-- prod env -->
+    <!--
+    <springProfile name="prod">
+        <logger name="org.springframework.*" level="info" />
+    </springProfile>
+    -->
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Hello thymeleaf</title>
+</head>
+
+<body>
+	<h1>Hello thymeleaf</h1>
+	<h2>name = <span th:text="${name}"></span></h2>
+	<h2>list = <span th:text="${list}"></span></h2>
+
+	<div>Thymeleaf List Test</div>
+    <!-- 정적 리소스를 Thymeleaf 문법으로 처리 -->
+    <img src="@{/img/undraw_profile_2.svg}" alt="Profile Image">
+
+	<tr th:each="index, item: ${list}">
+	 <span th:text="${index}"></span> 
+	 <span th:text="${item.index}"></span>
+		</br>
+	</tr>
+</body>
+
+</html>

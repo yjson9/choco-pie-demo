@@ -1,0 +1,115 @@
+              
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+    <head>
+        <!-- 페이지별 타이틀 입력 -->
+        <title>조회테이블샘플</title>
+        <!-- Custom styles for this page -->
+        <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    </head>
+    <body>
+        <!-- 본문 -->
+        <th:block layout:fragment="content">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+    
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Companies</h1>
+                <p class="mb-4">업체목록을 조회합니다.</a>.</p>
+
+                <!-- 조회조건 입력 -->
+                <div class="card shadow mb-4">
+                    
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">조회조건 입력</h6>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" placeholder="Enter name">
+                            <button id="searchButton">Search</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">업체목록조회</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>phone</th>
+                                        <th>businessId</th>
+                                        <th>memo</th>
+                                        <th>index</th>
+                                        <th>count</th>
+                                        <th>size</th>
+                                        <th>current</th>
+                                        <th>even</th>
+                                        <th>odd</th>
+                                        <th>first</th>
+                                        <th>last</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>phone</th>
+                                        <th>businessId</th>
+                                        <th>memo</th>
+                                        <th>index</th>
+                                        <th>count</th>
+                                        <th>size</th>
+                                        <th>current</th>
+                                        <th>even</th>
+                                        <th>odd</th>
+                                        <th>first</th>
+                                        <th>last</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody id="companyRows" th:fragment="companyRows">
+                                    <tr th:each="company, stat : ${companies}">
+                                        <td th:text="${company.id}"></td>
+                                        <td th:text="${company.name}"></td>
+                                        <td th:text="${company.phone}"></td>
+                                        <td th:text="${company.businessId}"></td>
+                                        <td th:text="${company.memo}"></td>
+                                        <td th:text="${stat.index}"></td>
+                                        <td th:text="${stat.count}"></td>
+                                        <td th:text="${stat.size}"></td>
+                                        <td th:text="${stat.current}"></td>
+                                        <td th:text="${stat.even}"></td>
+                                        <td th:text="${stat.odd}"></td>
+                                        <td th:text="${stat.first}"></td>
+                                        <td th:text="${stat.last}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            <!-- /.container-fluid -->        
+        </th:block>
+        
+        <!-- Page level plugins/scripts -->
+        <th:block layout:fragment="contentScripts">        
+            <!-- Page level plugins -->
+            <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+            <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    
+            <!-- Page level custom scripts -->
+            <script th:src="@{/js/companies.js}"></script>
+        </th:block>
+    </body>
+</html>

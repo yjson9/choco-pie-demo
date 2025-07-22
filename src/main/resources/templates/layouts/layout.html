@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">
+      Choco Pie Demo
+    </title>
+    <!-- 공통 헤드-->
+    <th:block th:replace="~{layouts/fragments/head :: headFragment}"></th:block>
+  </head>
+
+  <body
+    th:class="${isFullScreen} ? 'bg-gradient-primary' : ''"
+    th:id="${isFullScreen} ? '' : 'page-top'"
+  >
+    <!-- 전체화면 페이지 -->
+    <th:block th:if="${isFullScreen}">
+      <!-- container -->
+      <div class="container">
+        <!-- 본문-->
+        <th:block layout:fragment="content"></th:block>
+      </div>
+      <!-- End of Page Wrapper -->
+    </th:block>
+
+    <!-- 일반페이지(사이드바/탑 포함) -->
+    <th:block th:unless="${isFullScreen}">
+      <!-- Page Wrapper -->
+      <div id="wrapper">
+        <!-- 사이드바-->
+        <th:block
+          th:replace="~{layouts/fragments/sidebar :: sidebarFragment}"
+        ></th:block>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <!-- 상단바-->
+            <th:block
+              th:replace="~{layouts/fragments/top :: topbarFragment}"
+            ></th:block>
+
+            <!-- 본문-->
+            <th:block layout:fragment="content"></th:block>
+          </div>
+
+          <!-- 공통 하단-->
+          <th:block
+            th:replace="~{layouts/fragments/footer :: footerFragment}"
+          ></th:block>
+        </div>
+      </div>
+      <!-- End of Page Wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Logout Modal-->
+      <div
+        class="modal fade"
+        id="logoutModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Ready to Leave?
+              </h5>
+              <button
+                class="close"
+                type="button"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Select "Logout" below if you are ready to end your current
+              session.
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-secondary"
+                type="button"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <a class="btn btn-primary" th:href="@{/samples/login}">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </th:block>
+
+    <!-- 공통 스크립트-->
+    <th:block
+      th:replace="~{layouts/fragments/script :: scriptFragment}"
+    ></th:block>
+
+    <!-- 콘텐츠 스크립트 (여기서 추가 가능) -->
+    <th:block layout:fragment="contentScripts"></th:block>
+  </body>
+</html>
