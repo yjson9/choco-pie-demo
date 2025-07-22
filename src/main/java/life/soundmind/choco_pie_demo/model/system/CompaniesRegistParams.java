@@ -51,7 +51,7 @@ public class CompaniesRegistParams {
     private String memo;
 
     @Schema(description = "사용여부")
-    private String useYn;
+    private Boolean useYn;
 
     @Schema(description = "등록자명")
     private String userId;

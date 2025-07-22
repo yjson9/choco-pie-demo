@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.model.system;
+package life.soundmind.choco_pie_demo.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
@@ -8,7 +8,7 @@ import lombok.*;
 
 /**
  * <pre>
- * <b>Description  : 업체 모델클래스</b>
+ * <b>Description  : 메모정보 모델클래스</b>
  * <b>Project Name : choco-pie-demo.</b>
  * package  : life.soundmind.choco_pie_demo.model
  * </pre>
@@ -27,27 +27,24 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@Entity(name = "companies") // 소문자필수
-@Schema(description = "업체")
-public class Companies extends CommonModel{
+@Entity(name = "memoInfos") // 소문자필수
+@Schema(description = "메모정보")
+public class MemoInfos extends CommonModel{
 
     @Id
-    @Schema(description = "업체 id")
+    @Schema(description = "id")
     private String id;
 
-    @Schema(description = "업체명")
+    @Schema(description = "고객명")
     private String name;
 
-    @Schema(description = "업체전화번호")
+    @Schema(description = "고객전화번호")
     private String phone;
 
-    @Schema(description = "사업자번호")
-    private String businessId;
+    @Schema(description = "고객생년월일")
+    private String birth;
 
-    @Schema(description = "업체메모")
+    @Schema(description = "작성메모")
     private String memo;
-
-    // @Schema(description = "사용여부")
-    // private String useYn;
 
 }

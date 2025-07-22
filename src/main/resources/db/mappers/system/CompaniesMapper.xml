@@ -69,8 +69,8 @@
                ,
         ]]>
         <choose>
-            <when test="useYn == null or useYn.equals('')">'Y'</when>
-            <otherwise>#{useYn}</otherwise>
+            <when test="useYn == null"> 1 </when>
+            <otherwise> #{useYn} </otherwise>
         </choose>
         <![CDATA[
                , #{userId}
@@ -84,13 +84,11 @@
              , BUSINESS_ID  = #{businessId}
              , MEMO         = #{memo}
         ]]>
-        <choose>
-            <when test="useYn != null and !useYn.equals('')">
-                <![CDATA[
-                    , USE_YN       =  #{useYn}
-                ]]>
-            </when>
-        </choose>
+        <if test="useYn != null">
+            <![CDATA[
+            , USE_YN = #{useYn}
+            ]]>
+        </if>
         <![CDATA[
              , UPDATED_BY   = #{userId}
              , UPDATED_AT   = NOW()

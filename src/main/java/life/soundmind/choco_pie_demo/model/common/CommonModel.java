@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -16,6 +17,11 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public class CommonModel {
+
+    /** 사용여부 */
+    @Column(nullable = false)
+    @Schema(description = "사용여부 (true=사용, false=미사용)")
+    private Boolean useYn = true;  // 기본값 true
 
     @Schema(description = "등록자")
     private String createdBy;
