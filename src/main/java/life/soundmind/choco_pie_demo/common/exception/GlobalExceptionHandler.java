@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.exception;
+package life.soundmind.choco_pie_demo.common.exception;
 
 import java.nio.file.AccessDeniedException;
 

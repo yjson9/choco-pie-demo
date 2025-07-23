@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.service;
+package life.soundmind.choco_pie_demo.service.system;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import life.soundmind.choco_pie_demo.dao.CompaniesMapper;
-import life.soundmind.choco_pie_demo.exception.BusinessException;
-import life.soundmind.choco_pie_demo.exception.ErrorCode;
-import life.soundmind.choco_pie_demo.model.Companies;
-import life.soundmind.choco_pie_demo.model.CompaniesParams;
-import life.soundmind.choco_pie_demo.model.CompaniesRegistParams;
+import life.soundmind.choco_pie_demo.common.exception.BusinessException;
+import life.soundmind.choco_pie_demo.common.exception.ErrorCode;
+import life.soundmind.choco_pie_demo.dao.system.CompaniesMapper;
 import life.soundmind.choco_pie_demo.model.common.ResultModel;
-import life.soundmind.choco_pie_demo.repository.CompaniesRepository;
+import life.soundmind.choco_pie_demo.model.system.Companies;
+import life.soundmind.choco_pie_demo.model.system.CompaniesParams;
+import life.soundmind.choco_pie_demo.model.system.CompaniesRegistParams;
+import life.soundmind.choco_pie_demo.repository.system.CompaniesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

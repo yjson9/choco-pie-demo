@@ -1,11 +1,11 @@
-package life.soundmind.choco_pie_demo.service;
+package life.soundmind.choco_pie_demo.service.system;
 
 import java.util.List;
 
-import life.soundmind.choco_pie_demo.model.Companies;
-import life.soundmind.choco_pie_demo.model.CompaniesParams;
-import life.soundmind.choco_pie_demo.model.CompaniesRegistParams;
 import life.soundmind.choco_pie_demo.model.common.ResultModel;
+import life.soundmind.choco_pie_demo.model.system.Companies;
+import life.soundmind.choco_pie_demo.model.system.CompaniesParams;
+import life.soundmind.choco_pie_demo.model.system.CompaniesRegistParams;
 
 /**
  * <pre>

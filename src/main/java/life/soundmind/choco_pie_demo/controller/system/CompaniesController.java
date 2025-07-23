@@ -1,20 +1,16 @@
-package life.soundmind.choco_pie_demo.controller;
+package life.soundmind.choco_pie_demo.controller.system;
 
 import java.util.List;
 
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.validation.Valid;
-import life.soundmind.choco_pie_demo.model.Companies;
-import life.soundmind.choco_pie_demo.model.CompaniesParams;
-import life.soundmind.choco_pie_demo.model.CompaniesRegistParams;
-import life.soundmind.choco_pie_demo.service.CompaniesService;
+import life.soundmind.choco_pie_demo.model.system.Companies;
+import life.soundmind.choco_pie_demo.model.system.CompaniesParams;
+import life.soundmind.choco_pie_demo.service.system.CompaniesService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -74,7 +70,7 @@ public class CompaniesController {
         List<Companies> companies = this.service.selectCompaniesList(params);
         model.addAttribute("companies", companies);
 
-        return "pages/companies :: companyRows";
+        return "/pages/system/companies :: companyRows";
     }
 }
 

@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.model;
+package life.soundmind.choco_pie_demo.model.system;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

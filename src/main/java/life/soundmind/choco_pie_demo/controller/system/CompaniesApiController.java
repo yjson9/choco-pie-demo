@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.controller;
+package life.soundmind.choco_pie_demo.controller.system;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import life.soundmind.choco_pie_demo.model.Companies;
-import life.soundmind.choco_pie_demo.model.CompaniesParams;
-import life.soundmind.choco_pie_demo.model.CompaniesRegistParams;
 import life.soundmind.choco_pie_demo.model.common.ResultModel;
-import life.soundmind.choco_pie_demo.service.CompaniesService;
+import life.soundmind.choco_pie_demo.model.system.Companies;
+import life.soundmind.choco_pie_demo.model.system.CompaniesParams;
+import life.soundmind.choco_pie_demo.model.system.CompaniesRegistParams;
+import life.soundmind.choco_pie_demo.service.system.CompaniesService;
 import lombok.extern.slf4j.Slf4j;
 
 /**

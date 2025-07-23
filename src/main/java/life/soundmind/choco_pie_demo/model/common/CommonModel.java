@@ -1,5 +1,4 @@
 package life.soundmind.choco_pie_demo.model.common;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,7 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

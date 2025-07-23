@@ -1,9 +1,10 @@
-package life.soundmind.choco_pie_demo.repository;
+package life.soundmind.choco_pie_demo.repository.system;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import life.soundmind.choco_pie_demo.model.Companies;
+import life.soundmind.choco_pie_demo.model.system.Companies;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * <pre>
@@ -22,6 +23,6 @@ import life.soundmind.choco_pie_demo.model.Companies;
  * </pre>
  */
 @Repository
-public interface CompaniesRepository extends JpaRepository<Companies, Integer> {
+public interface CompaniesRepository extends JpaRepository<Companies, String> {
 
 }

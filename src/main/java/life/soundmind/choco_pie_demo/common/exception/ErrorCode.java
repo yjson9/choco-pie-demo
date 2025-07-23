@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.exception;
+package life.soundmind.choco_pie_demo.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

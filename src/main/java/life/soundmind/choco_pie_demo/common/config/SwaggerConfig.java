@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.config;
+package life.soundmind.choco_pie_demo.common.config;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.OpenAPI;
 import lombok.RequiredArgsConstructor;

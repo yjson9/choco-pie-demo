@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.config;
+package life.soundmind.choco_pie_demo.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,11 +18,9 @@ public class WebConfig implements WebMvcConfigurer{
     public void addViewControllers(ViewControllerRegistry registry) {
         // URL 경로와 템플릿 매핑
         //registry.addViewController("/").setViewName("index"); // / -> index.html
-        registry.addViewController("/").setViewName("pages/dash-board"); // / -> index.html
+        registry.addViewController("/").setViewName("pages/dashboard/dash-board"); // / -> index.html
 
-        registry.addViewController("/main").setViewName("pages/dash-board"); // /main -> dashBoard.html
-        registry.addViewController("/companies").setViewName("pages/companies"); // /companies -> companies.html
-
+        registry.addViewController("/main").setViewName("pages/dashboard/dash-board"); // /main -> dashBoard.html
         //SamplePages
         registry.addViewController("/samples/buttons").setViewName("samples/buttons"); // /samples/buttons -> buttons.html
         registry.addViewController("/samples/cards").setViewName("samples/cards"); // /samples/cards -> cards.html
