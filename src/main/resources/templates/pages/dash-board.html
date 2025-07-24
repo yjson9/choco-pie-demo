@@ -4,9 +4,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layouts/layout}">
     <head>
-        <title>페이지1</title>
+        <title>DashBoard</title>
     </head>
-    <body>
+    <body>        
+        <!-- 본문 -->
         <th:block layout:fragment="content">
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -337,7 +338,17 @@
                 </div>
     
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.container-fluid -->             
         </th:block>
+        
+        <!-- Page level plugins/scripts -->
+        <th:block layout:fragment="contentScripts">  
+            <!-- Page level plugins -->
+            <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+            <!-- Page level custom scripts -->
+            <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+            <script th:src="@{/js/demo/chart-pie-demo.js}"></script>      
+        </th:block>        
     </body>
 </html>

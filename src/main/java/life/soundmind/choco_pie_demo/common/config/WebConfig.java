@@ -19,10 +19,7 @@ public class WebConfig implements WebMvcConfigurer{
         // URL 경로와 템플릿 매핑
         //registry.addViewController("/").setViewName("index"); // / -> index.html
         registry.addViewController("/").setViewName("pages/dashboard/dash-board"); // / -> index.html
-        // registry.addViewController("/main").setViewName("pages/dash-board"); // /main -> dashBoard.html
-        registry.addViewController("/memo-templates").setViewName("pages/system/memo-templates"); // /companies -> companies.html
-        registry.addViewController("/companies").setViewName("pages/system/companies"); // /companies -> companies.html
-
+        
         // registry.addViewController("/").setViewName("pages/index");
         registry.addViewController("/login").setViewName("pages/login");
         registry.addViewController("/find").setViewName("pages/find");
@@ -32,6 +29,12 @@ public class WebConfig implements WebMvcConfigurer{
         registry.addViewController("/settings/edit").setViewName("pages/settings/edit");
 
         registry.addViewController("/main").setViewName("pages/dashboard/dash-board"); // /main -> dashBoard.html
+        
+        //registry.addViewController("/").setViewName("index"); // / -> index.html
+        registry.addViewController("/samples").setViewName("pages/dash-board"); // / -> index.html
+        registry.addViewController("/samples/main").setViewName("pages/dash-board"); // /main -> dashBoard.html
+        registry.addViewController("/samples/memo-templates").setViewName("pages/system/memo-templates"); // /companies -> companies.html
+        registry.addViewController("/samples/companies").setViewName("pages/system/companies"); // /companies -> companies.html
         //SamplePages
         registry.addViewController("/samples/buttons").setViewName("samples/buttons"); // /samples/buttons -> buttons.html
         registry.addViewController("/samples/cards").setViewName("samples/cards"); // /samples/cards -> cards.html

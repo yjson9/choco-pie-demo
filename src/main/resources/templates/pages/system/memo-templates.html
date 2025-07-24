@@ -39,26 +39,119 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800">메모양식 관리</h1>
+                <p class="mb-4">메모양식 정규식 작성 후 등록.</a></p>
 
-                <!-- Grid 영역 -->
-                <div class="row">
-                        <div class="col-md-8">
-                            <h4></h4>
-                            <button id="addRowBtn" class="btn btn-info mb-2">행 추가</button>
-                            <table id="myTable" class="display">
-                                <thead>
-                                <tr>
-                                    <th>순번</th>
-                                    <th>항목명</th>
-                                    <th>보이는 값</th>
-                                    <th>DB 저장용 값</th>
-                                    <th>액션</th>
-                                </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                <!-- 조회조건 입력 -->
+                <div class="card shadow mb-4">
+                    
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">조회조건 입력</h6>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <label for="name">대리점명:</label>
+                            <input type="text" id="name" placeholder="Enter name">
+                            <button id="searchButton">Search</button>
                         </div>
-                        <div class="col-md-4 editor-panel">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <!-- DataTales Example -->
+                    <div class="col-md-8 card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">메모양식</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                
+                    <!-- Grid 영역 -->
+                    
+                            <div class="">
+                                <h4></h4>
+                                <button id="addRowBtn" class="btn btn-info mb-2">행 추가</button>
+                                <table id="myTable" class="display">
+                                    <thead>
+                                    <tr>
+                                        <th>순번</th>
+                                        <th>항목명</th>
+                                        <th>보이는 값</th>
+                                        <th>DB 저장용 값</th>
+                                        <th>액션</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>name</th>
+                                            <th>phone</th>
+                                            <th>businessId</th>
+                                            <th>memo</th>
+                                            <th>index</th>
+                                            <th>count</th>
+                                            <th>size</th>
+                                            <th>current</th>
+                                            <th>even</th>
+                                            <th>odd</th>
+                                            <th>first</th>
+                                            <th>last</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>name</th>
+                                            <th>phone</th>
+                                            <th>businessId</th>
+                                            <th>memo</th>
+                                            <th>index</th>
+                                            <th>count</th>
+                                            <th>size</th>
+                                            <th>current</th>
+                                            <th>even</th>
+                                            <th>odd</th>
+                                            <th>first</th>
+                                            <th>last</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody id="companyRows" th:fragment="companyRows">
+                                        <tr th:each="company, stat : ${companies}">
+                                            <td th:text="${company.id}"></td>
+                                            <td th:text="${company.name}"></td>
+                                            <td th:text="${company.phone}"></td>
+                                            <td th:text="${company.businessId}"></td>
+                                            <td th:text="${company.memo}"></td>
+                                            <td th:text="${stat.index}"></td>
+                                            <td th:text="${stat.count}"></td>
+                                            <td th:text="${stat.size}"></td>
+                                            <td th:text="${stat.current}"></td>
+                                            <td th:text="${stat.even}"></td>
+                                            <td th:text="${stat.odd}"></td>
+                                            <td th:text="${stat.first}"></td>
+                                            <td th:text="${stat.last}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                <!-- DataTales Example -->
+                <div class="col-md-4  card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">메모양식</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            
+                
+                        <div class="editor-panel">
                             <h4></h4>
                             <div id="editorInfo">행을 선택하세요.</div>
                             <div><input type="text" id="item-name" class="form-control mt-2" style="min-height: 40px;" placeholder="이름"></div>
@@ -76,6 +169,10 @@
                                 <button id="saveBtn">적용</button>
                             </div>
                         </div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
             <!-- /.container-fluid -->

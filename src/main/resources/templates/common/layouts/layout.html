@@ -47,9 +47,13 @@
           </div>
 
           <!-- 공통 하단-->
-          <th:block
+          <footer
+            th:replace="~{common/fragments/footer :: FooterFragment}"
+            class="text-center py-3 mt-auto bg-light"
+          ></footer>
+          <!-- <th:block
             th:replace="~{common/fragments/footer :: footerFragment}"
-          ></th:block>
+          ></th:block> -->
         </div>
       </div>
       <!-- End of Page Wrapper -->
