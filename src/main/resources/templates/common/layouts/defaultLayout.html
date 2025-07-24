@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head th:replace="~{common/fragments/config :: ConfigFragment}"></head>
+  <body>
+    <header th:replace="~{common/fragments/default/header :: HeaderFragment}"></header>
+
+    <section class="container-fluid" tabindex="-1" style="flex: 1">
+      <div class="row h-100">
+        <!-- 왼쪽 사이드바 -->
+        <div th:replace="~{common/fragments/default/sidebar :: SidebarFragment}"></div>
+
+        <!-- 오른쪽 컨텐츠 -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <th:block layout:fragment="Content"></th:block>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      th:replace="~{common/fragments/footer :: FooterFragment}"
+      class="text-center py-3 mt-auto bg-light"
+    ></footer>
+
+    <div th:replace="~{common/fragments/modal :: ModalFragment}"></div>
+
+    <div id="loadingBar" style="display: none">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="ModalFragment">
+  <!-- 공통 모달 -->
+  <!-- Confirm -->
+  <div id="confirmModal" class="modal fade" tabindex="-1" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel"><strong>알림</strong></h5>
+        </div>
+        <div class="modal-body" id="confirmMessage"></div>
+        <div class="modal-footer d-flex border-0">
+          <button type="button" class="btn btn-secondary" id="confirmCancelBtn" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-dark" id="confirmOkBtn">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert -->
+  <div id="alertModal" class="modal fade" tabindex="-1" aria-labelledby="alertModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="alertModalLabel"><strong>알림</strong></h5>
+        </div>
+        <div class="modal-body" id="alertMessage"></div>
+        <div class="modal-footer d-flex border-0">
+          <button type="button" class="btn btn-dark" id="alertOkBtn">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./ 공통 모달 -->
+
+  <script th:src="@{/js/modal.js}"></script>
+</html>

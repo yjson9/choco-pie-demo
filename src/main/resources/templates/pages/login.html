@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{common/layouts/onepageLayout}"
+  layout:fragment="Content"
+>
+  <body>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="card p-5" style="width: 500px">
+        <h2 class="text-center"><strong>로그인</strong></h2>
+        <form id="loginForm" name="loginForm" onsubmit="return false;">
+          <div class="mb-3">
+            <label for="loginId" class="form-label">아이디</label>
+            <input
+              type="text"
+              class="form-control"
+              id="loginId"
+              name="loginId"
+              placeholder="아이디를 입력해주세요."
+              data-validate="required length pattern"
+              data-min="5"
+              data-max="20"
+              data-pattern="loginId"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요."
+              data-validate="required length pattern"
+              data-min="5"
+              data-max="20"
+              data-pattern="password"
+              onkeyup="if(window.event.keyCode == 13) login();"
+            />
+          </div>
+          <button type="button" class="btn btn-dark w-100" id="login_form_button" onclick="login();">로그인</button>
+          <div class="d-flex justify-content-between mt-3">
+            <a href="/find" class="text-black-50">아이디 · 비밀번호 찾기</a>
+            <a href="/register" class="text-black-50">회원가입</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script th:src="@{/js/login.js}"></script>
+  </body>
+</html>

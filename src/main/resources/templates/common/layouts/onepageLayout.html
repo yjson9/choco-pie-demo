@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head th:replace="~{common/fragments/config :: ConfigFragment}"></head>
+  <body>
+    <header th:replace="~{common/fragments/onepage/header :: OnepageHeaderFragment}"></header>
+
+    <main tabindex="-1" class="container py-5">
+      <th:block layout:fragment="Content"></th:block>
+    </main>
+
+    <footer th:replace="~{common/fragments/footer :: FooterFragment}"></footer>
+
+    <div th:replace="~{common/fragments/modal :: ModalFragment}"></div>
+
+    <div id="loadingBar" style="display: none">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </body>
+</html>

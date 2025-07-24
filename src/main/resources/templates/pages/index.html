@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{common/layouts/onepageLayout}"
+  layout:fragment="Content"
+>
+  <body>
+    <div>
+      <div class="text-center">
+        <h1>Welcome to Filo</h1>
+        <p>Start managing your files efficiently!</p>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        common.sendAuthorize().then((isAuthorized) => {
+          console.log("isAuthorized", isAuthorized);
+          if (!isAuthorized) {
+            console.log("로그인 상태 아님");
+            $("#navbarNav").find("a").attr("href", "/login");
+          } else {
+            console.log("로그인 상태");
+            $("#navbarNav").find("a").attr("href", "/dashboard");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

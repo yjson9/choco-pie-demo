@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{common/layouts/defaultLayout}"
+  layout:fragment="Content"
+>
+  <body>
+    <div class="container-fluid py-5">
+      <!-- 제목과 네비게이션을 같은 줄에 배치 -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">내 파일</h5>
+
+        <!-- 상단 네비게이션 (작게 오른쪽 정렬) -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent p-0 m-0 small">
+            <li class="breadcrumb-item text-black">Files</li>
+            <li class="breadcrumb-item active text-black" aria-current="page">내 파일</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- 상단 액션 바 -->
+      <form id="fileListForm" name="fileListForm" onsubmit="return false;">
+        <input type="hidden" name="folderId" id="folderId" />
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center border p-3 rounded shadow-sm mb-3 gap-2"
+        >
+          <!-- 좌측, 상위 폴더, 신규 드롭다운 버튼 -->
+          <div class="dropdown">
+            <button id="backBtn" class="btn btn-outline-secondary btn-sm" type="button" style="display: none">
+              <i class="fas fa-arrow-left me-1"></i> 상위 폴더
+            </button>
+
+            <button
+              class="btn btn-outline-dark btn-sm"
+              type="button"
+              id="createDropdownBtn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-plus me-1"></i> 신규
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="createDropdownBtn">
+              <li>
+                <a class="dropdown-item" href="javascript:void(0)" onclick="openCustomModal('createFolderModal');">
+                  <i class="fas fa-folder me-2 text-secondary"></i> 새 폴더
+                </a>
+              </li>
+              <li>
+                <label for="files" class="dropdown-item mb-0" style="cursor: pointer">
+                  <i class="fas fa-file-upload me-2 text-secondary"></i> 파일 업로드
+                  <input type="file" id="files" multiple hidden onchange="handleFileUpload(this.files);" />
+                </label>
+              </li>
+              <li>
+                <label for="folders" class="dropdown-item mb-0" style="cursor: pointer">
+                  <i class="fas fa-folder-open me-2 text-secondary"></i> 폴더 업로드
+                  <input
+                    type="file"
+                    id="folders"
+                    webkitdirectory
+                    directory
+                    multiple
+                    hidden
+                    onchange="handleFolderUpload(this.files)"
+                  />
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 우측 버튼 묶음 -->
+          <div class="d-flex flex-wrap gap-2">
+            <select class="form-select form-select-sm" style="width: auto" id="direction">
+              <option value="desc" selected>내림차순</option>
+              <option value="asc">오름차순</option>
+            </select>
+            <select class="form-select form-select-sm" style="width: auto" id="sort">
+              <option value="date" selected>업로드 날짜</option>
+              <option value="name">파일명</option>
+              <option value="size">파일크기</option>
+            </select>
+
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="downloadContents();">
+              다운로드
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="moveContents();">이동</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="shareContents();">공유</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteContents();">삭제</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- 파일 목록 테이블 -->
+      <div class="table-responsive file-table-wrap border-top">
+        <table class="table table-hover align-middle text-center file-table">
+          <colgroup>
+            <col width="5%" />
+            <col width="30%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="20%" />
+            <col width="10%" />
+            <col width="5%" />
+          </colgroup>
+          <thead class="table-light text-center align-middle sticky-top z-1">
+            <tr>
+              <th>
+                <input type="checkbox" class="form-check-input border-dark" />
+              </th>
+              <th class="text-start">이름</th>
+              <th>유형</th>
+              <th>파일크기</th>
+              <th>소유자</th>
+              <th>업로드 날짜</th>
+              <th>공유</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="contents"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 새폴더 생성 모달 -->
+    <div class="modal fade" id="createFolderModal" tabindex="-1" aria-labelledby="createFolderLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createFolderLabel"><strong>새 폴더 생성</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="createFolderForm" name="createFolderForm" onsubmit="return false;">
+              <input type="hidden" name="parentId" id="parentId" />
+              <input
+                type="text"
+                id="newFolderName"
+                name="folderName"
+                class="form-control"
+                placeholder="폴더 이름을 입력해주세요."
+                data-validate="required length"
+                data-min="1"
+                data-max="50"
+              />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <button class="btn btn-dark" onclick="submitNewFolder('#createFolderForm')">생성</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 새폴더 생성 모달 -->
+
+    <!-- 이름 변경 모달 -->
+    <div class="modal fade" id="renameModal" tabindex="-1" aria-labelledby="renameLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="renameLabel"><strong>이름 변경</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="renameForm" name="renameForm" onsubmit="return false;">
+              <input type="hidden" id="id" />
+              <input type="hidden" id="type" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                placeholder="변경할 이름을 입력해주세요."
+                data-validate="required length"
+                data-min="1"
+                data-max="100"
+              />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <button class="btn btn-dark" onclick="submitRename('#renameForm');">저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 이름 변경 모달 -->
+
+    <!-- 이동 모달 -->
+    <div class="modal fade" id="moveModal" tabindex="-1" aria-labelledby="moveLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="moveLabel"><strong>이동</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="moveForm" name="moveForm" onsubmit="return false;">
+              <input type="hidden" id="targetFolderId" name="targetFolderId" />
+              <div id="folderTree"></div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <div class="small">
+              <span id="selectedPath" class="text-decoration-underline"></span>
+            </div>
+            <div>
+              <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button id="submitMoveBtn" class="btn btn-dark" disabled>저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 이동 모달 -->
+
+    <!-- 공유 모달 -->
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="shareLabel"><strong>공유</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="shareForm" name="shareForm" onsubmit="return false;">
+              <input type="hidden" name="folderIds" id="folderIds" />
+              <input type="hidden" name="fileIds" id="fileIds" />
+              <input type="hidden" name="targetUserId" id="targetUserId" />
+              <!-- 사용자 검색 -->
+              <div class="mb-3 position-relative">
+                <label for="searchUser" class="form-label">사용자 검색</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchUserInput"
+                  placeholder="아이디를 입력하여 검색해주세요."
+                  oninput="searchUsersAPI(this.value);"
+                  autocomplete="off"
+                />
+                <!-- 결과 박스 -->
+                <ul
+                  id="userSearchResult"
+                  class="list-group position-absolute w-100 z-1 mt-1"
+                  style="max-height: 200px; overflow-y: auto; display: none"
+                >
+                  <li class="list-group-item list-group-item-action" style="cursor: pointer">테스트 (test)</li>
+                </ul>
+              </div>
+
+              <div class="mb-3">
+                <p class="mb-2">공유된 사용자</p>
+                <ul id="shareUserList" class="list-group"></ul>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">접근 권한</label>
+                <select name="permission" id="permission" class="form-select">
+                  <option value="READ_ONLY" selected>뷰어</option>
+                  <option value="READ_WRITE">편집자</option>
+                </select>
+              </div>
+
+              <div>
+                <div>공유 항목 - <span id="selectedItemsInfo" class="fw-bold text-dark">폴더 0개, 파일 0개</span></div>
+                <div>
+                  공유 대상 사용자 -
+                  <span id="selectedUserInfo" class="fw-bold text-dark">선택</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <button class="btn btn-dark" onclick="submitShare('#shareForm');">공유</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 공유 모달 -->
+
+    <!-- 공유 현황 모달 -->
+    <div class="modal fade" id="shareUsersModal" tabindex="-1" aria-labelledby="shareUsersLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="shareUsersLabel"><strong>공유 사용자 현황</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <ul id="shareInfoUserList" class="list-group"></ul>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <button class="btn btn-dark" onclick="submitShareUsers();">저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 공유 현황 모달 -->
+    <script th:src="@{/js/files/files.js}"></script>
+  </body>
+</html>

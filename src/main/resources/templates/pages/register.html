@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{common/layouts/onepageLayout}"
+  layout:fragment="Content"
+>
+  <body>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="card p-5" style="width: 600px">
+        <h2 class="text-center"><strong>회원가입</strong></h2>
+        <form id="registerForm" name="registerForm" onsubmit="return false;">
+          <div class="mb-3">
+            <label for="loginId" class="form-label">아이디</label>
+            <input
+              type="text"
+              class="form-control"
+              id="loginId"
+              name="loginId"
+              placeholder="아이디를 입력해주세요."
+              data-validate="required length pattern"
+              data-min="5"
+              data-max="20"
+              data-pattern="loginId"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요."
+              data-validate="required length pattern"
+              data-min="8"
+              data-max="50"
+              data-pattern="password"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password-confirm" class="form-label">비밀번호 확인</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password-confirm"
+              name="password-confirm"
+              placeholder="비밀번호 확인을 입력해주세요."
+              data-validate="required match"
+              data-match="#password"
+              data-match-name="비밀번호"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">이름</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="이름을 입력해주세요."
+              data-validate="required pattern"
+              data-pattern="name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="이메일을 입력해주세요."
+              data-validate="required pattern"
+              data-pattern="email"
+            />
+          </div>
+          <div class="mb-3">
+            <input type="checkbox" class="form-check-input me-1" id="agree" name="agree" data-validate="required" />
+            <label for="agree" class="form-check-label">개인정보 이용약관에 동의합니다.</label>
+          </div>
+          <button type="button" class="btn btn-dark w-100" id="registerBtn" onclick="register();">회원가입</button>
+        </form>
+      </div>
+    </div>
+    <script th:src="@{/js/register.js}"></script>
+  </body>
+</html>

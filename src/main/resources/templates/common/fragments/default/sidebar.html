@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="SidebarFragment">
+  <nav class="col-md-3 col-lg-2 d-md-block bg-light">
+    <div class="p-3">
+      <ul class="nav flex-column" id="sidebarMenu">
+        <li class="nav-item">
+          <a
+            class="nav-link sidebar-link d-flex justify-content-between align-items-center"
+            href="/dashboard"
+            data-path="/dashboard"
+          >
+            Dashboard <i class="fas fa-chevron-right"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link sidebar-link d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse"
+            href="#filesSubMenu"
+            aria-expanded="false"
+            aria-controls="filesSubMenu"
+          >
+            Files <i class="fas fa-chevron-right chevron-icon"></i>
+          </a>
+          <ul class="list-unstyled collapse ps-3 mt-1" id="filesSubMenu">
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="/files" data-path="/files">내 파일</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="/receives" data-path="/receives">공유된 파일</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sidebar-link" href="/trashes" data-path="/trashes">휴지통</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link sidebar-link d-flex justify-content-between align-items-center"
+            href="/settings"
+            data-path="/settings"
+          >
+            Settings <i class="fas fa-chevron-right"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <script>
+    $(document).ready(function () {
+      setSidebarMenu();
+
+      // collapse 토글 시 chevron 방향 변경
+      const collapses = document.querySelectorAll(".collapse");
+      collapses.forEach((collapse) => {
+        collapse.addEventListener("show.bs.collapse", function () {
+          const toggle = document.querySelector(`a[href="#${collapse.id}"] .chevron-icon`);
+          toggle?.classList.remove("fa-chevron-right");
+          toggle?.classList.add("fa-chevron-down");
+        });
+
+        collapse.addEventListener("hide.bs.collapse", function () {
+          const toggle = document.querySelector(`a[href="#${collapse.id}"] .chevron-icon`);
+          toggle?.classList.remove("fa-chevron-down");
+          toggle?.classList.add("fa-chevron-right");
+        });
+      });
+    });
+  </script>
+</html>
