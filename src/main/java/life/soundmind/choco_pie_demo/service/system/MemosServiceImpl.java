@@ -1,27 +1,20 @@
-package life.soundmind.choco_pie_demo.service;
+package life.soundmind.choco_pie_demo.service.system;
 
+import java.lang.reflect.Field;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
-import jakarta.transaction.Transactional;
-import life.soundmind.choco_pie_demo.exception.BusinessException;
-import life.soundmind.choco_pie_demo.exception.ErrorCode;
-import life.soundmind.choco_pie_demo.model.MemoInfos;
-import life.soundmind.choco_pie_demo.model.MemoTemplates;
-import life.soundmind.choco_pie_demo.model.common.ResultModel;
-import life.soundmind.choco_pie_demo.repository.MemoTemplatesRepository;
-import life.soundmind.choco_pie_demo.repository.MemosRepository;
+import life.soundmind.choco_pie_demo.model.system.MemoInfos;
+import life.soundmind.choco_pie_demo.model.system.MemoTemplates;
+import life.soundmind.choco_pie_demo.repository.system.MemoTemplatesRepository;
+import life.soundmind.choco_pie_demo.repository.system.MemosRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 /**
  * <pre>
  * <b>Description  : 메모 서비스</b>

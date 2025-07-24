@@ -9,7 +9,7 @@
       Choco Pie Demo
     </title>
     <!-- 공통 헤드-->
-    <th:block th:replace="~{layouts/fragments/head :: headFragment}"></th:block>
+    <th:block th:replace="~{common/fragments/head :: headFragment}"></th:block>
   </head>
 
   <body
@@ -32,14 +32,14 @@
       <div id="wrapper">
         <!-- 사이드바-->
         <th:block
-          th:replace="~{layouts/fragments/sidebar :: sidebarFragment}"
+          th:replace="~{common/fragments/sidebar :: sidebarFragment}"
         ></th:block>
 
         <div id="content-wrapper" class="d-flex flex-column">
           <div id="content">
             <!-- 상단바-->
             <th:block
-              th:replace="~{layouts/fragments/top :: topbarFragment}"
+              th:replace="~{common/fragments/top :: topbarFragment}"
             ></th:block>
 
             <!-- 본문-->
@@ -48,7 +48,7 @@
 
           <!-- 공통 하단-->
           <th:block
-            th:replace="~{layouts/fragments/footer :: footerFragment}"
+            th:replace="~{common/fragments/footer :: footerFragment}"
           ></th:block>
         </div>
       </div>
@@ -104,7 +104,7 @@
 
     <!-- 공통 스크립트-->
     <th:block
-      th:replace="~{layouts/fragments/script :: scriptFragment}"
+      th:replace="~{common/fragments/script :: scriptFragment}"
     ></th:block>
 
     <!-- 콘텐츠 스크립트 (여기서 추가 가능) -->

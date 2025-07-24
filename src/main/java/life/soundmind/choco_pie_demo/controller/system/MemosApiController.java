@@ -1,4 +1,4 @@
-package life.soundmind.choco_pie_demo.controller;
+package life.soundmind.choco_pie_demo.controller.system;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import life.soundmind.choco_pie_demo.service.MemosService;
+import life.soundmind.choco_pie_demo.service.system.MemosService;
 import lombok.extern.slf4j.Slf4j;
 
 /**

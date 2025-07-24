@@ -1,15 +1,13 @@
-package life.soundmind.choco_pie_demo.repository;
-
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
+package life.soundmind.choco_pie_demo.repository.system;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import life.soundmind.choco_pie_demo.model.MemoTemplates;
+import org.springframework.stereotype.Repository;
+
+import life.soundmind.choco_pie_demo.model.system.MemoInfos;
 
 /**
  * <pre>
- * <b>Description  : 메모템플릿 레포지토리</b>
+ * <b>Description  : 메모 레포지토리</b>
  * <b>Project Name : choco-pie-demo.</b>
  * package  : life.soundmind.choco_pie_demo.repository
  * </pre>
@@ -24,8 +22,6 @@ import life.soundmind.choco_pie_demo.model.MemoTemplates;
  * </pre>
  */
 @Repository
-public interface MemoTemplatesRepository extends JpaRepository<MemoTemplates, Integer> {
-
-    List<MemoTemplates> findByStoreIdAndUseYnTrueOrderBySeqAsc(String storeId);
+public interface MemosRepository extends JpaRepository<MemoInfos, String> {
 
 }
