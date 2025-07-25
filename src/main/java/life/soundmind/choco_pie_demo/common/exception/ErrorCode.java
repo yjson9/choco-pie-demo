@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
+    OK(200, "COMMON-ERR-200", "요청 성공"),
+
     /*  ********************************************************************  */
     /*                                                                        */
     /*  400 Bad Request                                                    	  */

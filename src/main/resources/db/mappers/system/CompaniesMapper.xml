@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="life.soundmind.choco_pie_demo.dao.CompaniesMapper">
+<mapper namespace="life.soundmind.choco_pie_demo.dao.system.CompaniesMapper">
 
     <!-- 업체목록 selectCompaniesList -->
-    <select id="selectCompaniesList" resultType="life.soundmind.choco_pie_demo.model.Companies">
+    <select id="selectCompaniesList" resultType="life.soundmind.choco_pie_demo.model.system.Companies">
         <![CDATA[
         /* life.soundmind.choco_pie_demo.dao.CompaniesMapper.selectCompaniesList */
         SELECT C.ID                                                 AS ID           /* 회사 id        */
@@ -29,18 +29,21 @@
     </select>
 
     <!-- 업체단건 selectCompanies -->
-    <select id="selectCompanies" resultType="life.soundmind.choco_pie_demo.model.Companies">
+    <select id="selectCompanies" resultType="life.soundmind.choco_pie_demo.model.system.Companies">
         <![CDATA[
         /* life.soundmind.choco_pie_demo.dao.CompaniesMapper.selectCompanies */
-        SELECT C.ID                                                 AS ID           /* 회사 id        */
+        SELECT 
+            C.ID AS ID           /* 회사 id        */
              , C.NAME                                               AS NAME         /* 업체명         */
              , C.PHONE                                              AS PHONE        /* 업체전화번호   */
              , C.BUSINESS_ID                                        AS BUSINESS_ID  /* 사업자 번호    */
              , C.MEMO                                               AS MEMO         /* 업체메모       */
              , CONVERT_TZ(C.UPDATED_AT, '+00:00', '+09:00') AS UPDATED_AT   /* 수정시간 (예: UTC → KST) */
              , CONVERT_TZ(C.CREATED_AT, '+00:00', '+09:00') AS CREATED_AT   /* 생성된시간 */
-          FROM CHOCO_PIE.COMPANIES                     C
-         WHERE C.ID =#{id}
+        FROM 
+            CHOCO_PIE.COMPANIES C
+         WHERE 
+            C.ID =#{id}
          ORDER BY C.CREATED_AT DESC
         ]]>
     </select>

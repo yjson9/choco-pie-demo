@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="life.soundmind.choco_pie_demo.dao.sample.SampleMapper">
+
+    <select id="getSamples" resultType="sample">
+        SELECT 
+            id 
+            , title
+            , content
+            , use_yn
+            , created_by
+            , created_at
+            , updated_by
+            , updated_at
+        FROM 
+            sample S
+        WHERE 
+            use_yn = 'Y'
+    </select>
+
+    <insert id="saveSample" parameterType="sample">
+        INSERT INTO (
+            title
+            , content
+            , created_by
+            , updated_by
+            , updated_at
+        ) VALUES (
+            #{title}
+            , #{content}
+            , #{createdBy}
+            , #{updatedBy}
+            , now()
+        )
+    </insert>
+
+    <update id="modifySample" parameterType="sample">
+        UPDATE sample
+            SET
+                title = #{title}
+                , content = #{content}
+                , updated_by = #{updatedBy}
+                , updated_at = now()
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="removeSample" parameterType="sample">
+        UPDATE sample
+            SET
+                use_yn = 'Y'
+                , updated_by = #{updatedBy}
+                , updated_at = now()
+        WHERE
+            id = #{id}
+    </update>
+</mapper>

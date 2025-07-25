@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/choco-pie")
+@RequestMapping("/api/chocopie")
 @Tag(name = "Companies", description = "업체 API")
 public class CompaniesApiController {
 
@@ -69,7 +69,7 @@ public class CompaniesApiController {
      */
     @Operation(summary = "업체 목록조회", description = "업체 목록조회", tags = "Companies")
     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Companies.class)))
-    @GetMapping("/companies")
+    @GetMapping("/companies/")
     public ResponseEntity<Object> selectCompaniesList(@ParameterObject CompaniesParams params) {
 
         if (log.isDebugEnabled()) {
